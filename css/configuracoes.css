@@ -1,0 +1,45 @@
+/* Painel de Configurações (botão ⚙ + janela com as chaves de API e os interruptores). Usa as cores do tema escuro (tech.css). */
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.settings-open{display:inline-flex;align-items:center;gap:6px;flex:none;padding:8px 12px}
+.settings-open [aria-hidden]{font-size:1.1rem;line-height:1}
+.settings{border:1px solid var(--border);border-radius:18px;padding:0;background:var(--bg2);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:hidden}
+.settings[open]{display:flex}
+.settings::backdrop{background:rgba(2,6,23,.72);backdrop-filter:blur(3px)}
+.settings-box{display:flex;flex-direction:column;width:100%;max-height:calc(100dvh - 26px);overflow:auto;padding:16px 18px;-webkit-overflow-scrolling:touch}
+.settings-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.settings-head h2{margin:0}
+.settings-x{padding:4px 10px;min-height:36px}
+.settings-sec{padding:12px 0;border-top:1px solid var(--border)}
+.settings-sec:first-of-type{border-top:0}
+.settings h3{margin:4px 0 8px}
+.settings-help{font-size:.82rem;margin-bottom:12px}
+.key-row{margin-bottom:14px}
+.key-row label{display:block;font-size:.85rem;font-weight:600;margin-bottom:5px}
+.key-line{display:flex;gap:6px}
+.key-input{flex:1;min-width:0;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:16px ui-monospace,Consolas,monospace;color:var(--ink);background:rgba(15,23,42,.7)}
+.key-input:focus{border-color:var(--neon);box-shadow:0 0 0 3px rgba(34,211,238,.15);outline:none}
+.key-eye{padding:0 12px}
+.key-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px;min-height:30px}
+.key-hint{font-size:.78rem;color:var(--muted)}.key-hint.ok{color:var(--green)}
+.key-remove{padding:4px 10px;min-height:32px;font-size:.78rem;border-color:var(--red);color:var(--red)}
+.key-remove[hidden]{display:none}
+.settings-primary,.settings-done{width:100%;padding:11px 14px;min-height:44px;font-weight:700}
+.settings-primary{border:0;background:linear-gradient(135deg,var(--neon),var(--purple));color:#050816;box-shadow:0 0 16px rgba(34,211,238,.35)}
+.settings-primary:disabled{opacity:.55;cursor:progress}
+.settings-msg{margin:10px 0 0;font-size:.82rem;min-height:1.2em;overflow-wrap:anywhere}
+.settings-msg.good{color:var(--green)}.settings-msg.warn{color:var(--amber)}.settings-msg.bad{color:var(--red)}
+.switch-row{padding:8px 0;border-bottom:1px solid rgba(56,189,248,.12)}
+.switch{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 10px;min-height:44px;background:rgba(15,23,42,.6);box-shadow:none}
+.switch:hover{transform:none}
+.switch-track{flex:none;width:44px;height:24px;border-radius:99px;background:rgba(239,68,68,.35);border:1px solid var(--red);position:relative;transition:background .2s,border-color .2s}
+.switch-knob{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
+.switch[aria-checked="true"] .switch-track{background:rgba(16,185,129,.4);border-color:var(--green)}
+.switch[aria-checked="true"] .switch-knob{transform:translateX(20px)}
+.switch-label{flex:1;font-weight:600}
+.switch-state{font-size:.78rem;color:var(--red)}.switch[aria-checked="true"] .switch-state{color:var(--green)}
+.switch-desc{margin:4px 2px 0;font-size:.78rem}
+.level-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:0}
+.level-row label{font-size:.85rem;font-weight:600}
+.level-row select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;background:rgba(15,23,42,.8);color:var(--ink)}
+.settings-foot{padding-top:12px;border-top:1px solid var(--border)}
+@media(max-width:850px){.settings-open-text{display:none}.settings-open{padding:8px 11px;min-height:40px}.settings{border-radius:14px}}

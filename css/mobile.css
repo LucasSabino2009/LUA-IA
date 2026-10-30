@@ -1,0 +1,24 @@
+/* Ajustes para celular e telas pequenas (carregado por último). */
+html{-webkit-text-size-adjust:100%}
+.app{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom))}
+button,select{min-height:40px;touch-action:manipulation}
+textarea{font-size:16px} /* evita o zoom automático do iOS ao focar */
+.brain{overflow:auto}
+@media(max-width:850px){
+  body{overflow:auto;-webkit-overflow-scrolling:touch}
+  body::before,body::after{animation:none} /* economiza bateria e GPU */
+  .chat,.brain{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .app{height:auto;min-height:100dvh;grid-template-columns:minmax(0,1fr);gap:10px;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+  .chat{height:calc(100dvh - 16px);min-height:420px}
+  .brain{max-height:none;overflow:visible;padding-bottom:16px}
+  header{padding:10px 14px} h1{font-size:1.25rem}
+  .controls{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:6px;padding:8px 10px}
+  .controls>*{flex:0 0 auto;white-space:nowrap}
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding:0 12px 8px}.chips button{flex:0 0 auto;white-space:nowrap}
+  #log{padding:12px}.msg{max-width:96%}
+  form{padding:8px;gap:6px}#send{padding:0 16px;min-height:46px}
+  .brain p,.brain h2,.brain h3,.brain #grid,.brain #bars,.brain .memory-actions,.brain #copy,.brain pre{margin-left:12px;margin-right:12px}
+  .team-row{grid-template-columns:96px 1fr 84px}#grid .neuron-row{grid-template-columns:78px 1fr 40px}
+  button:hover{transform:none} /* sem "pulinho" no toque */
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}

@@ -1,0 +1,22 @@
+/* Avisos de conexão das APIs — usa as cores do tema escuro (tech.css). */
+.api-status{border-bottom:1px solid var(--border);padding:8px 12px;font-size:.82rem;color:var(--ink)}
+.api-summary{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid;border-radius:8px;font-weight:600;cursor:pointer;list-style:none}
+.api-summary::-webkit-details-marker{display:none}
+.api-summary::after{content:"▾";margin-left:auto;opacity:.7;transition:transform .15s}
+.api-status[open] .api-summary::after{transform:rotate(180deg)}
+.api-summary.good{background:rgba(16,185,129,.18);border-color:var(--green);color:var(--green)}
+.api-summary.warn{background:rgba(251,191,36,.15);border-color:var(--amber);color:var(--amber)}
+.api-summary.bad{background:rgba(239,68,68,.18);border-color:var(--red);color:var(--red)}
+.api-summary.wait{background:rgba(148,163,184,.12);border-color:var(--muted);color:var(--muted)}
+.dot{flex:none;width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;color:#0b1024;font-size:.72rem;font-weight:800;line-height:1}
+.dot.good{background:var(--green)}.dot.warn{background:var(--amber)}.dot.bad{background:var(--red)}.dot.wait{background:var(--muted)}
+.api-list{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.api-item{display:flex;gap:8px;align-items:flex-start;padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:rgba(15,23,42,.5)}
+.api-name{display:block;font-weight:600;color:var(--ink)}.api-text{display:block;color:var(--muted);overflow-wrap:anywhere}
+.api-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;color:var(--muted)}
+.api-foot button{border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:rgba(15,23,42,.6);color:var(--ink);font-size:.82rem}
+.api-foot button:disabled{opacity:.5;cursor:progress}
+.api-toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,20px);max-width:min(92vw,420px);padding:10px 14px;border-radius:10px;color:#fff;font-size:.88rem;white-space:pre-line;box-shadow:0 6px 20px #0006;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50}
+.api-toast.show{opacity:1;transform:translate(-50%,0)}
+.api-toast.good{background:#1f7a49}.api-toast.bad{background:#a73b3b}
+@media(max-width:850px){.api-status{padding:6px 10px}.api-list{grid-template-columns:1fr}.api-foot button{min-height:40px}}

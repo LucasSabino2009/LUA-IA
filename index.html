@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050816"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-192.png"><link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LUA">
+<title>LUA — IA experimental</title>
+<link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/chat.css"><link rel="stylesheet" href="css/painel.css"><link rel="stylesheet" href="css/controles.css"><link rel="stylesheet" href="css/status.css"><link rel="stylesheet" href="css/tech.css"><link rel="stylesheet" href="css/mobile.css"><link rel="stylesheet" href="css/configuracoes.css"><link rel="stylesheet" href="css/instalar.css"><script src="js/pwa-instalacao.js"></script></head>
+<body><main class="app">
+<section class="chat"><header><div><h1>LUA</h1><p id="status" role="status">Iniciando…</p></div></header>
+<details class="api-status" id="apiStatus"><summary class="api-summary wait" id="apiSummary"><span class="dot wait" id="apiDot" aria-hidden="true">…</span><span id="apiSummaryText" aria-live="polite">Verificando as APIs…</span></summary>
+<ul class="api-list" id="apiList"></ul><div class="api-foot"><span id="apiChecked"></span><button id="apiRecheck" type="button">Verificar agora</button></div></details>
+<nav class="controls" aria-label="Controles de fontes e rede">
+<button id="apiToggle" aria-pressed="false">Conhecimento API: desligada</button><button id="securityToggle" aria-pressed="false">Segurança API: desligada</button><button id="wikiToggle" aria-pressed="true">Wikipédia: ligada</button>
+<button id="neuralToggle" aria-pressed="true">Neurônios: ligados</button><label>Nível <select id="level"><option value="low">Baixa — 1.000</option><option value="mid">Média — 2.000</option><option value="high">Alta — 3.000</option></select></label></nav>
+<div id="log" aria-live="polite"></div><div class="chips"><button data-q="Oi, tudo bem?">Cumprimento</button><button data-q="O que é fotossíntese?">Pesquisar</button><button data-q="Escreva uma redação sobre a importância da educação">Texto longo</button></div>
+<form id="form"><textarea id="inp" rows="2" enterkeyhint="send" placeholder="Escreva sua mensagem…" aria-label="Mensagem"></textarea><button id="send">Enviar</button></form></section>
+<aside class="brain"><h2>Painel da LUA</h2><p id="stats">Preparando painel…</p><h3>Mapa de calor dos neurônios ocultos</h3><div id="grid" aria-label="Mapa de calor dos neurônios"></div><h3>Segurança e validação</h3><p id="securityStats">Ainda sem validações.</p><h3>Intenções mais prováveis</h3><div id="bars"></div><h3>Memória da LUA</h3><p id="memoryStats">Memória não inicializada.</p><div class="memory-actions"><button id="syncMemoryFiles">Sincronizar arquivos</button><button id="exportMemory">Exportar memória</button><label class="import-label">Importar <input type="file" id="importMemoryFile" accept="application/json" hidden></label><button id="clearMemory">Limpar memória</button></div>
+<h3>Última resposta</h3><button id="copy">Copiar resposta</button><pre id="lastText"></pre></aside>
+</main>
+<script src="api/api.js"></script>
+<script src="js/config.js"></script><script src="js/utils.js"></script>
+<script src="js/rede/neural.js"></script><script src="js/rede/niveis.js"></script><script src="js/dados/intencoes.js"></script><script src="js/dados/corpus.js"></script><script src="js/rede/treino.js"></script>
+<script src="js/gerador/modelo-linguagem.js"></script><script src="js/gerador/redacao.js"></script><script src="js/gerador/tamanho.js"></script><script src="js/conversa/contexto.js"></script><script src="js/conversa/intencao.js"></script><script src="js/memoria.js"></script>
+<script src="js/conhecimento/wikipedia.js"></script><script src="js/conhecimento/fontes.js"></script><script src="js/conversa/resposta.js"></script><script src="js/ui/painel.js"></script><script src="js/ui/controles.js"></script><script src="js/ui/status-apis.js"></script><script src="js/ui/configuracoes.js"></script><script src="js/ui/chat.js"></script><script src="js/main.js"></script>
+</body></html>

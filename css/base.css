@@ -1,0 +1,8 @@
+/* Tokens visuais, reset e estrutura geral. */
+:root{color-scheme:light;--bg:#edf1f5;--ink:#152434;--muted:#607184;--card:#fff;--navy:#183a5a;--blue:#8bbcff;--amber:#ffbf59}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,Segoe UI,sans-serif}
+button,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;max-width:1440px;margin:auto;padding:14px;height:100dvh}
+.chat,.brain{min-height:0;border-radius:14px;overflow:hidden}.chat{display:flex;flex-direction:column;background:var(--card);box-shadow:0 2px 8px #15243412}
+header{padding:12px 18px;border-bottom:1px solid #dbe2e9}h1,h2,h3,p{margin-top:0}h1{margin-bottom:0}header p{margin:3px 0 0;color:var(--muted);font-size:.85rem}
+@media(max-width:850px){.app{height:auto;min-height:100dvh;grid-template-columns:1fr;padding:8px}.chat{min-height:70dvh}.brain{max-height:none}}

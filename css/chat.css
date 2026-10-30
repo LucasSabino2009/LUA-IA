@@ -1,0 +1,5 @@
+/* Mensagens, entrada e apresentação de respostas longas. */
+#log{flex:1;min-height:160px;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.msg{max-width:92%;padding:11px 14px;border-radius:12px;white-space:pre-wrap;overflow-wrap:anywhere}.msg.user{align-self:flex-end;background:var(--navy);color:white}.msg.bot{align-self:flex-start;background:#eef2f6}.meta{display:block;color:var(--muted);font-size:.75rem;margin-top:6px}
+form{display:flex;gap:8px;padding:12px;border-top:1px solid #dbe2e9}textarea{resize:vertical;min-height:46px;max-height:180px;flex:1;min-width:0;border:1px solid #c8d2dd;border-radius:10px;padding:10px;color:var(--ink);background:white}#send{border:0;border-radius:10px;padding:0 18px;background:var(--navy);color:white}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px}.chips button{border:1px solid #c8d2dd;border-radius:99px;background:white;padding:4px 10px;font-size:.82rem}

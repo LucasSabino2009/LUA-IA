@@ -1,0 +1,24 @@
+/* Aviso de instalação da LUA (PWA): discreto, tema roxo/neon da LUA, não bloqueia o chat. */
+.lua-pwa{position:fixed;z-index:60;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:min(360px,calc(100vw - 32px));display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;color:var(--ink,#e2e8f0);background:linear-gradient(160deg,rgba(30,22,60,.94),rgba(15,23,42,.94));border:1px solid rgba(167,139,250,.45);box-shadow:0 12px 36px rgba(0,0,0,.55),0 0 22px rgba(167,139,250,.28);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transform:translateY(18px) scale(.98);transition:opacity .35s ease,transform .35s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.lua-pwa.lua-pwa-on{opacity:1;transform:none;pointer-events:auto}
+.lua-pwa.lua-pwa-saindo{opacity:0;transform:translateY(18px) scale(.98);pointer-events:none}
+.lua-pwa-icone{flex:0 0 44px;width:44px;height:44px;border-radius:12px;box-shadow:0 0 14px rgba(167,139,250,.45)}
+.lua-pwa-corpo{min-width:0;flex:1}
+.lua-pwa .lua-pwa-titulo{display:block;font-size:1rem;letter-spacing:.03em;background:linear-gradient(90deg,#22d3ee,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lua-pwa .lua-pwa-texto{margin:2px 0 10px;font-size:.84rem;line-height:1.4;color:#cbd5e1}
+.lua-pwa .lua-pwa-passos{margin:0 0 10px;padding-left:20px;font-size:.84rem;line-height:1.5;color:#e2e8f0}
+.lua-pwa .lua-pwa-passos[hidden]{display:none}
+.lua-pwa .lua-pwa-share{display:inline-block;vertical-align:-3px;color:#a78bfa}
+.lua-pwa-acoes{display:flex;gap:8px;flex-wrap:wrap}
+.lua-pwa .lua-pwa-acoes button{min-height:40px;padding:8px 16px;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;touch-action:manipulation}
+.lua-pwa .lua-pwa-acoes button[hidden]{display:none}
+.lua-pwa .lua-pwa-instalar{border:0;color:#050816;background:linear-gradient(135deg,#a78bfa,#7c3aed 55%,#22d3ee);box-shadow:0 0 16px rgba(167,139,250,.5)}
+.lua-pwa .lua-pwa-depois{color:#cbd5e1;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.3)}
+.lua-pwa .lua-pwa-acoes button:focus-visible{outline:3px solid #a78bfa;outline-offset:2px}
+/* Celular: no topo, para não cobrir o campo de mensagem nem o botão Enviar */
+@media(max-width:850px){
+  .lua-pwa{right:max(10px,env(safe-area-inset-right));left:max(10px,env(safe-area-inset-left));bottom:auto;top:max(10px,env(safe-area-inset-top));width:auto;max-width:460px;margin:0 auto;transform:translateY(-18px) scale(.98)}
+  .lua-pwa.lua-pwa-on{transform:none}
+  .lua-pwa.lua-pwa-saindo{transform:translateY(-18px) scale(.98)}
+}
+@media(prefers-reduced-motion:reduce){.lua-pwa{transition:opacity .01s}}

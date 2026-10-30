@@ -1,0 +1,8 @@
+{
+  "name": "lua-ia",
+  "version": "1.1.0",
+  "description": "LUA - IA experimental em JavaScript puro (PC e celular)",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "private": true
+}

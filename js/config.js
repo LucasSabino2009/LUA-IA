@@ -1,0 +1,1 @@
+window.LUA=window.LUA||{};LUA.config={inputSize:256,outputSize:12,levels:{low:1000,mid:2000,high:3000},activeThreshold:0.15,historyLimit:12};
