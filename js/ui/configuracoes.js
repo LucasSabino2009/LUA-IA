@@ -94,7 +94,7 @@ LUA.settings = {
   async load() {
     if (location.protocol === 'file:') { this.info = null; this.paintKeys(); return this.msg('Aberto direto do arquivo: para salvar chaves, rode "node server.js" (ou iniciar.bat) e abra http://localhost:3000.', 'warn'); }
     try {
-      const r = await fetch('/api/config', { cache: 'no-store' });
+      const r = await fetch((window.API_BASE || '') + '/api/config', { cache: 'no-store' });
       const j = await r.json().catch(() => null);
       if (!r.ok || !j || !j.knowledge) throw Error(j && j.error ? j.error : 'servidor da LUA não encontrado');
       this.info = j;
@@ -123,13 +123,18 @@ LUA.settings = {
     this.msg('Salvando…', '');
     try {
       if (location.protocol === 'file:') throw Error('abra pelo servidor (node server.js) para salvar chaves');
-      const r = await fetch('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const r = await fetch((window.API_BASE || '') + '/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw Error(j.error || 'HTTP ' + r.status);
       this.info = j; this.paintKeys();
+      /* Ativa os botões quando a chave for validada. */
+      const st = (LUA.controls && LUA.controls.state) || {};
+      if (j.knowledge && j.knowledge.configured) { st.api = true; if (LUA.API && LUA.API.config) LUA.API.config.conhecimento.enabled = true; }
+      if (j.security && j.security.configured) { st.security = true; if (LUA.API && LUA.API.config) LUA.API.config.seguranca.enabled = true; }
+      if (LUA.controls) { LUA.controls.state = st; LUA.utils.store.set('lua_controls', st); LUA.controls.paint(); }
       this.msg(okText + ' Testando a conexão…', '');
       if (LUA.apiStatus) { await LUA.apiStatus.check(true); this.report(okText); }
-    } catch (e) { this.msg('Não salvou: ' + String(e.message || e).slice(0, 160), 'bad'); }
+    } catch (e) { let msg = String(e.message || e); if (/401|403/.test(msg)) msg = 'Chave inválida'; else if (/404|405/.test(msg)) msg = 'Rota errada no servidor'; else if (/Failed to fetch|NetworkError|servidor/i.test(msg)) msg = 'Servidor fora do ar ou acordando, tente de novo em 1 minuto'; this.msg('Não salvou: ' + msg.slice(0, 160), 'bad'); }
     finally { this.busy = false; btn.disabled = false; }
   },
 

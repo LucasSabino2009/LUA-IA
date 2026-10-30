@@ -33,7 +33,7 @@ LUA.apiStatus = {
     if (location.protocol === 'file:') return { ok: false, error: 'página aberta direto do arquivo — rode "node server.js" (ou iniciar.bat)' };
     const t0 = performance.now();
     try {
-      const r = await this.timed('/api/status?check=1' + (fresh ? '&fresh=1' : ''), 12000);
+      const r = await this.timed((window.API_BASE || '') + '/api/status?check=1' + (fresh ? '&fresh=1' : ''), 12000);
       const j = await r.json().catch(() => null);
       if (!r.ok || !j || j.backend !== true) return { ok: false, error: 'servidor da LUA não encontrado (site estático?)' };
       return { ok: true, ms: Math.round(performance.now() - t0), knowledge: j.knowledge || {}, security: j.security || {} };

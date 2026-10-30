@@ -25,11 +25,11 @@
     if (location.protocol === 'file:') throw Error('API indisponível ao abrir o arquivo direto. Rode "node server.js" (ou iniciar.bat) para usar as APIs.');
     const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 15000);
     try {
-      const r = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal });
+      const r = await fetch((window.API_BASE || '') + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw Error(j.error || 'HTTP ' + r.status);
       return j;
-    } catch (e) { if (LUA.apiStatus) LUA.apiStatus.refresh(); throw Error(e.name === 'AbortError' ? 'Tempo esgotado na API.' : e.message); }
+    } catch (e) { if (LUA.apiStatus) LUA.apiStatus.refresh(); let msg = e.message || ''; if (e.name === 'AbortError') msg = 'Servidor fora do ar ou acordando, tente de novo em 1 minuto'; else if (/Failed to fetch|NetworkError/i.test(msg)) msg = 'Servidor fora do ar ou acordando, tente de novo em 1 minuto'; else if (/HTTP 401|HTTP 403/.test(msg)) msg = 'Chave inválida'; else if (/HTTP 404|HTTP 405/.test(msg)) msg = 'Rota errada no servidor'; throw Error(msg); }
     finally { clearTimeout(timer); }
   };
 

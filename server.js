@@ -147,8 +147,9 @@ function isPrivateAddr(a) {
   return a === '::1' || /^(127\.|10\.|192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01])\.)/.test(a) || /^f[cd][0-9a-f]{2}:/i.test(a) || /^fe80:/i.test(a);
 }
 function configAllowed(req) {
-  if (!isPrivateAddr(req.socket.remoteAddress)) return false;
   const origin = req.headers.origin;
+  if (origin && (origin === 'https://lucassabino2009.github.io' || /^http:\/\/localhost(:\d+)?$/.test(origin) || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin))) return true;
+  if (!isPrivateAddr(req.socket.remoteAddress)) return false;
   if (req.method === 'POST' && (!origin || (() => { try { return new URL(origin).host !== req.headers.host; } catch (_) { return true; } })())) return false;
   return true;
 }
@@ -157,6 +158,14 @@ const server = http.createServer(async (req, res) => {
   let parsed;
   try { parsed = new URL(req.url, 'http://x'); } catch (_) { res.writeHead(400); return res.end('Bad request'); } /* URL malformada (ex.: "//") não pode derrubar o servidor */
   const route = parsed.pathname;
+  const origin = req.headers.origin || '';
+  const allowedOrigin = (origin === 'https://lucassabino2009.github.io' || /^http:\/\/localhost(:\d+)?$/.test(origin) || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin)) ? origin : null;
+  if (allowedOrigin) { res.setHeader('Access-Control-Allow-Origin', allowedOrigin); res.setHeader('Vary', 'Origin'); }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
+
+  if (route === '/health' || route === '/healthz') { res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' }); return res.end(JSON.stringify({ ok: true })); }
 
   if (route === '/api/knowledge' && req.method === 'POST') {
     try {

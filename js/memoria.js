@@ -113,7 +113,7 @@ LUA.memory={
  appendFile:async function(name,text){
   if(this.noBackend||location.protocol==='file:')return false;
   try{
-   const r=await fetch('/api/memory/append',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({file:name,content:text})});
+   const r=await fetch((window.API_BASE||'')+'/api/memory/append',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({file:name,content:text})});
    const j=await r.json().catch(()=>({}));
    if(r.status===404||r.status===405){this.noBackend=true;return false;}
    if(!r.ok)throw new Error(j.error||('HTTP '+r.status));

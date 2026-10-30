@@ -1,0 +1,12 @@
+name = "lua-ia-api"
+main = "worker.js"
+compatibility_date = "2024-10-01"
+
+# KV namespace para guardar as chaves (crie com: wrangler kv:namespace create LUA_KEYS)
+[[kv_namespaces]]
+binding = "LUA_KEYS"
+id = "COLE_AQUI_O_ID_DO_NAMESPACE"
+
+# Opcional: modelo da Groq
+[vars]
+GROQ_MODEL = "openai/gpt-oss-20b"
